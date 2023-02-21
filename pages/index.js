@@ -1,11 +1,38 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
+import { useEffect, useState, useRef } from 'react';
+import axios from 'axios';
 
-const inter = Inter({ subsets: ['latin'] })
+
 
 export default function Home() {
+
+  const url = `https://api.openweathermap.org/data/2.5/forecast?=${location}&units=${units}&appid=${apiKey}`;
+  const apiKey = "49ccf82f986af6e7a34acce8e672f10b";
+  const location = "Vancouver";
+
+  const [data, setData] = useState();
+  const grabWeather = useRef(false);
+
+  const units = "metric";
+
+  const fetchWeather = async () => {
+    const response = await axios.get(url)
+  }
+
+useEffect(() => {
+  if(grabWeather.current === true){
+    fetchWeather();
+  }
+
+  return () => {
+    grabWeather.current = true;
+  }
+}, []);
+
+
+
   return (
     <>
       <Head>
@@ -66,10 +93,10 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h2 className={inter.className}>
+            <h2 >
               Docs <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>
+            <p >
               Find in-depth information about Next.js features and&nbsp;API.
             </p>
           </a>
@@ -80,10 +107,10 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h2 className={inter.className}>
+            <h2 >
               Learn <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>
+            <p >
               Learn about Next.js in an interactive course with&nbsp;quizzes!
             </p>
           </a>
@@ -94,10 +121,10 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h2 className={inter.className}>
+            <h2 >
               Templates <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>
+            <p >
               Discover and deploy boilerplate example Next.js&nbsp;projects.
             </p>
           </a>
@@ -108,10 +135,10 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h2 className={inter.className}>
+            <h2 >
               Deploy <span>-&gt;</span>
             </h2>
-            <p className={inter.className}>
+            <p >
               Instantly deploy your Next.js site to a shareable URL
               with&nbsp;Vercel.
             </p>
