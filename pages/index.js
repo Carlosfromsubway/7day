@@ -7,18 +7,99 @@ import axios from 'axios';
 
 
 export default function Home() {
-
-  const url = `https://api.openweathermap.org/data/2.5/forecast?=${location}&units=${units}&appid=${apiKey}`;
   const apiKey = "49ccf82f986af6e7a34acce8e672f10b";
-  const location = "Vancouver";
+  const units = "metric";
+  const location = "vancouver";
+  const url = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=${units}&appid=${apiKey}`;
+  
 
   const [data, setData] = useState();
   const grabWeather = useRef(false);
 
-  const units = "metric";
+  
 
   const fetchWeather = async () => {
     const response = await axios.get(url)
+
+    const arrayOfDays = [];
+    let weatherData = response.data.list.map((weather, index) => {
+      console.log(parseInt(weather.dt_txt.substr(8,2), 10));
+      let num = parseInt(weather.dt_txt.substr(8,2), 10);
+
+      if(num !== arrayOfDays.find(element => element === num)) {
+        arrayOfDays.push(num);
+        console.log("here")
+        console.log(response.data.list[index])
+        var month = ''
+        var icon =''
+
+        if(weather.dt_txt.substr(5,2) == 1){
+          month = "January"
+        } else if(weather.dt_txt.substr(5,2) == 2){
+          month = "February"
+         }  else if(weather.dt_txt.substr(5,2) == 3){
+          month = "March"
+        } else if(weather.dt_txt.substr(5,2) == 4){
+          month = "April"
+        }else if(weather.dt_txt.substr(5,2) == 5){
+          month = "May"
+        }else if(weather.dt_txt.substr(5,2) == 6){
+          month = "June"
+        }else if(weather.dt_txt.substr(5,2) == 7){
+          month = "July"
+        }else if(weather.dt_txt.substr(5,2) == 8){
+          month = "August"
+        }else if(weather.dt_txt.substr(5,2) == 9){
+          month = "September"
+        }else if(weather.dt_txt.substr(5,2) == 10){
+          month = "October"
+        }else if(weather.dt_txt.substr(5,2) == 11){
+          month = "November"
+        }else if(weather.dt_txt.substr(5,2) == 12){
+          month = "December"
+        }
+
+        if(weather.weather[0].main == "Clouds"){
+          icon='/icons/broken-clouds.png'
+        } else if(weather.weather[0].main == "Clear"){
+          icon = '/icons/Clear-sky.png'
+        } else if(weather.weather[0].main == "Atmosphere"){
+          icon = '/icons/mist.png'
+        } else if(weather.weather[0].main == "Rain"){
+          icon = '/icons/rain.png'
+        } else if(weather.weather[0].main == "Drizzle"){
+          icon = '/icons/shower-rain.png'
+        } else if(weather.weather[0].main == "Snow"){
+          icon = '/icons/snow.png'
+        } else if(weather.weather[0].main == "Thunderstorm"){
+            icon = '/icons/thunderstorm.png'
+        }
+
+        var now = new Date(weather.dt_txt)
+;
+
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        var day = days[now.getDate];
+
+        return (
+          <div key={index}>
+            <Image
+            src={icon}
+            alt={icon}
+            width={200}
+            height={150}/>
+            <p> 
+
+              {day} <br/> {month} {weather.dt_txt.substr(8,2)}, {weather.dt_txt.substr(0,4)}
+            </p>
+            <div>{weather.main.temp.toFixed(1)}°C</div>
+            <div>{weather.weather[0].main}</div>
+          </div>
+        )
+}
+    })
+    console.log(arrayOfDays)
+    setData(weatherData);
   }
 
 useEffect(() => {
@@ -30,6 +111,9 @@ useEffect(() => {
     grabWeather.current = true;
   }
 }, []);
+
+const current = new Date();
+const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
 
 
 
@@ -44,8 +128,9 @@ useEffect(() => {
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.js</code>
+       Van Weather <br/>
+       Last updates: {date}
+
           </p>
           <div>
             <a
@@ -54,14 +139,7 @@ useEffect(() => {
               rel="noopener noreferrer"
             >
               By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
+
             </a>
           </div>
         </div>
@@ -69,7 +147,7 @@ useEffect(() => {
         <div className={styles.center}>
           <Image
             className={styles.logo}
-            src="/next.svg"
+            src="/weather-forecast-logo.png"
             alt="Next.js Logo"
             width={180}
             height={37}
@@ -77,7 +155,7 @@ useEffect(() => {
           />
           <div className={styles.thirteen}>
             <Image
-              src="/thirteen.svg"
+              src=""
               alt="13"
               width={40}
               height={31}
@@ -87,62 +165,9 @@ useEffect(() => {
         </div>
 
         <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 >
-              Docs <span>-&gt;</span>
-            </h2>
-            <p >
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
+     
+        {data}
 
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 >
-              Learn <span>-&gt;</span>
-            </h2>
-            <p >
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 >
-              Templates <span>-&gt;</span>
-            </h2>
-            <p >
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 >
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p >
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
         </div>
       </main>
     </>
