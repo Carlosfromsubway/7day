@@ -5,6 +5,34 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  background-image: url(../public/weather\ bg.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 120%;
+  flex-wrap: wrap;
+}
+
+
+.weather {
+  background-color: #000786;
+  opacity: 75%;
+  width: 260px;
+  margin: 80px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 20px;
+  border-radius: 10px;
+  aspect-ratio: 1;
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 7px 5px rgba(68, 68, 68, 0.413);
+  
+}
+
+
+.weather :hover {
+  opacity: 50%;
 }
 
 .description {
@@ -16,6 +44,8 @@
   width: 100%;
   z-index: 2;
   font-family: var(--font-mono);
+  color: black;
+  
 }
 
 .description a {
@@ -23,15 +53,24 @@
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  color: aliceblue;
+  background-color: rgba(240, 248, 255, 0.165);
+  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+  border-radius: var(--border-radius);
+  border: 1px solid;
+  box-shadow: 7px 5px rgba(68, 68, 68, 0.413);
+  width: 100px;
 }
 
 .description p {
   position: relative;
   margin: 0;
   padding: 1rem;
-  background-color: rgba(var(--callout-rgb), 0.5);
+  background-color: aliceblue;
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
+  border: 1px solid;
+  box-shadow: 7px 5px rgba(68, 68, 68, 0.413);
 }
 
 .code {

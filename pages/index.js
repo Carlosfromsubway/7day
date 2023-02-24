@@ -60,9 +60,9 @@ export default function Home() {
         }
 
         if(weather.weather[0].main == "Clouds"){
-          icon='/icons/broken-clouds.png'
+          icon='/my icons/Cloud.png'
         } else if(weather.weather[0].main == "Clear"){
-          icon = '/icons/Clear-sky.png'
+          icon = '/my icons/Sun.png'
         } else if(weather.weather[0].main == "Atmosphere"){
           icon = '/icons/mist.png'
         } else if(weather.weather[0].main == "Rain"){
@@ -70,9 +70,9 @@ export default function Home() {
         } else if(weather.weather[0].main == "Drizzle"){
           icon = '/icons/shower-rain.png'
         } else if(weather.weather[0].main == "Snow"){
-          icon = '/icons/snow.png'
+          icon = '/my icons/Snow.png'
         } else if(weather.weather[0].main == "Thunderstorm"){
-            icon = '/icons/thunderstorm.png'
+            icon = '/my icons/Lightning.png'
         }
 
         var now = new Date(weather.dt_txt)
@@ -83,17 +83,22 @@ export default function Home() {
 
         return (
           <div key={index}>
+            <div className={styles.weather}>
             <Image
             src={icon}
             alt={icon}
-            width={200}
-            height={150}/>
+            width={190}
+            height={160}
+            padding={10}
+            opacity={80}
+            />
             <p> 
 
               {day} <br/> {month} {weather.dt_txt.substr(8,2)}, {weather.dt_txt.substr(0,4)}
             </p>
-            <div>{weather.main.temp.toFixed(1)}°C</div>
-            <div>{weather.weather[0].main}</div>
+            <div> Temperature {weather.main.temp.toFixed(1)}°C</div>
+            <div> Condition: {weather.weather[0].main}</div>
+          </div>
           </div>
         )
 }
@@ -128,8 +133,10 @@ const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
+      <div className={styles.top}> 
        Van Weather <br/>
        Last updates: {date}
+       </div>
 
           </p>
           <div>
@@ -139,6 +146,7 @@ const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear
               rel="noopener noreferrer"
             >
               By{' '}
+              Tyler
 
             </a>
           </div>
