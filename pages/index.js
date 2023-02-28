@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 export default function Home() {
-  const apiKey = "49ccf82f986af6e7a34acce8e672f10b";
+  let apiKey = process.env.NEXT_PUBLIC_APIKEY;
   const units = "metric";
   const location = "vancouver";
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=${units}&appid=${apiKey}`;
@@ -154,22 +154,14 @@ const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear
 
         <div className={styles.center}>
           <Image
-            className={styles.logo}
-            src="/weather-forecast-logo.png"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
+           
+            src="/favicon Weather logo.ico"
+            alt="Logo"
+            width={300}
+            height={190}
             priority
           />
-          <div className={styles.thirteen}>
-            <Image
-              src=""
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
+
         </div>
 
         <div className={styles.grid}>
