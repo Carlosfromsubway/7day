@@ -30,6 +30,12 @@
   
 }
 
+.font {
+  color: aliceblue;
+  font-size: 15px;
+}
+
+
 .top {
   display: flex;
   justify-content: center;

@@ -139,7 +139,7 @@ const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear
        </div>
 
       
-          <div>
+          <div className={styles.font}>
 
               By{' '}
               Tyler
