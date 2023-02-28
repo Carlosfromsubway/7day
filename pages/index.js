@@ -8,8 +8,8 @@ import axios from 'axios';
 
 export default function Home() {
   let apiKey = process.env.NEXT_PUBLIC_APIKEY;
-  const units = "metric";
-  const location = "vancouver";
+  let units = process.env.NEXT_PUBLIC_UNITS;
+  let location = process.env.NEXT_PUBLIC_LOCATION;
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=${units}&appid=${apiKey}`;
   
 
