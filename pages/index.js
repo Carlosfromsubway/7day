@@ -132,23 +132,19 @@ const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
-          <p>
+    
       <div className={styles.top}> 
        Van Weather <br/>
        Last updates: {date}
        </div>
 
-          </p>
+      
           <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+
               By{' '}
               Tyler
 
-            </a>
+        
           </div>
         </div>
 

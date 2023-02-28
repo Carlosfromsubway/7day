@@ -9,7 +9,7 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  background-size: 120%;
+  background-size: cover;
   flex-wrap: wrap;
 }
 
@@ -30,7 +30,19 @@
   
 }
 
-
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgb(50, 50, 50);
+  background-color: aliceblue;
+  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
+  border-radius: var(--border-radius);
+  border: 1px solid;
+  box-shadow: 7px 5px rgba(68, 68, 68, 0.413);
+  width: 200px;
+}
 .weather :hover {
   opacity: 50%;
 }
