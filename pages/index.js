@@ -64,9 +64,9 @@ export default function Home() {
         } else if(weather.weather[0].main == "Clear"){
           icon = '/my icons/Sun.png'
         } else if(weather.weather[0].main == "Atmosphere"){
-          icon = '/my icons/mist.png'
+          icon = '/my icons/Mist.png'
         } else if(weather.weather[0].main == "Rain"){
-          icon = '/my icons/rain.png'
+          icon = '/my icons/Rain.png'
         } else if(weather.weather[0].main == "Drizzle"){
           icon = '/my icons/shower-rain.png'
         } else if(weather.weather[0].main == "Snow"){
