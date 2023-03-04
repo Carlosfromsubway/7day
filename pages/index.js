@@ -112,9 +112,9 @@ useEffect(() => {
     fetchWeather();
   //}
 
-  return () => {
-    grabWeather.current = true;
-  }
+  //return () => {
+    //grabWeather.current = true;
+ // }
 }, []);
 
 const current = new Date();
