@@ -78,7 +78,7 @@ export default function Home() {
         var now = new Date(weather.dt_txt)
 ;
 
-        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         var day = days[now.getDate];
 
         return (
@@ -109,14 +109,13 @@ export default function Home() {
 
 useEffect(() => {
   //if(grabWeather.current === true){
-   
+    fetchWeather();
   //}
 
-  //return () => {
-    //grabWeather.current = true;
- // }
- fetchWeather()
-}, [])
+  return () => {
+    grabWeather.current = true;
+  }
+}, []);
 
 const current = new Date();
 const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
